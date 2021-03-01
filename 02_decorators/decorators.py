@@ -11,11 +11,7 @@ gauth = GoogleAuth()
 gauth.LocalWebserverAuth()
 gdrive = GoogleDrive()
 
-
-
-
 # ссылка на мой файл на гугл драйве
-#https://docs.google.com/spreadsheets/d/1VOkUF6ovNYAw3S8kQQ79vSuGS9zDhksIXAfo077Y1Tw/edit?usp=sharing
 url = 'https://drive.google.com/uc?id=1Co_6XNa5fFXrm0MEi6arYfY8z6wpL7dD'
 # # То, с каким именем будет выведен мой файл
 output = 'Testing.xlsx'
@@ -51,13 +47,14 @@ def random_numbers():
     for y in range(1, max_rows):
         for x in range(1, 11):
             sheet.cell(row=y, column=x).value = random.randint(1, 100)
-        #Выбираем границы закрашиваемых столбцов, границы фиксированные, поэтому чтобы продвигаться дальше -
+        # Выбираем границы закрашиваемых столбцов, границы фиксированные, поэтому чтобы продвигаться дальше -
         # задаём другие координаты
     for z in range(1, max_rows):
         x = random.randint(1, 10)
         sheet.cell(row=z, column=x).fill = PatternFill(fill_type="solid", fgColor=f"{color_str}")
     book.save('Testing.xlsx')
 
-file1 = gdrive.CreateFile({'title':'Testing.xlsx'})
+
+file1 = gdrive.CreateFile({'title': 'Testing.xlsx'})
 file1.SetContentFile('Testing.xlsx')
 file1.Upload()
